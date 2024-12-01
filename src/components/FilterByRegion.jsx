@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 const regions = ["Africa", "America", "Asia", "Europe", "Oceania"];
 
-const FilterByRegion = () => {
+const FilterByRegion = ({ onRegionSelect }) => {
   const [selectedRegion, setSelectedRegion] = useState("");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -13,6 +13,7 @@ const FilterByRegion = () => {
   const handleRegionSelect = (region) => {
     setSelectedRegion(region);
     setIsDropdownOpen(false);
+    onRegionSelect(region); // Trigger the region change in the parent component
   };
 
   return (
