@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Card from "./Card";
 import { CiSearch } from "react-icons/ci";
 import FilterByRegion from "./FilterByRegion";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const [searchTerm, setSearchTerm] = useState(""); // State to hold the search term
@@ -30,6 +31,9 @@ const Home = () => {
       getCountriesDetails(`https://restcountries.com/v3.1/name/${searchTerm}`);
     }
   };
+  if(searchTerm===""){
+    getCountriesDetails("https://restcountries.com/v3.1/all")
+  }
 
   const handleRegionSelect = (region) => {
     // Fetch countries by region
@@ -68,7 +72,9 @@ const Home = () => {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
           {countriesDetails.map((data) => (
-            <Card propData={data} key={data.cca3} />
+           
+            <Card propData={data} key={data.cioc} />
+           
           ))}
         </div>
       )}

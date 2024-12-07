@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Card = (props) => {
   const { propData } = props;
@@ -8,11 +9,20 @@ const Card = (props) => {
     population = "N/A",
     region = "N/A",
     capital = ["N/A"],
+    cioc ,
   } = propData;
+
+  
+  const navigate = useNavigate();
+  const handleclick = () =>{
+    navigate(`/details/${countryName}`);
+  }
 
   return (
     <div className="flex flex-wrap gap-10">
-      <div className="shadow rounded-md w-80">
+      <div
+      onClick={handleclick}
+      className="shadow rounded-md w-80">
         <div>
           <img
             src={flagImage}
