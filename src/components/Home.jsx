@@ -31,8 +31,8 @@ const Home = () => {
       getCountriesDetails(`https://restcountries.com/v3.1/name/${searchTerm}`);
     }
   };
-  if(searchTerm===""){
-    getCountriesDetails("https://restcountries.com/v3.1/all")
+  if (searchTerm === "") {
+    getCountriesDetails("https://restcountries.com/v3.1/all");
   }
 
   const handleRegionSelect = (region) => {
@@ -63,7 +63,7 @@ const Home = () => {
         </form>
 
         {/* Filter By Region */}
-        <FilterByRegion onRegionSelect={handleRegionSelect} />
+        <FilterByRegion onclick={handleRegionSelect} />
       </div>
 
       {/* Display Data or Errors */}
@@ -72,9 +72,7 @@ const Home = () => {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
           {countriesDetails.map((data) => (
-           
-            <Card propData={data} key={data.cioc} />
-           
+            <Card propData={data} key={data.id} />
           ))}
         </div>
       )}

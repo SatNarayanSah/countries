@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { FaArrowLeftLong } from 'react-icons/fa6'
 import { useNavigate, useParams } from 'react-router-dom'
 
+
 export const CountryDetails = () => {
 
     const {id} = useParams(); // this get the country name
     const [countryData, setCountryData] = useState(null);
     const navigate = useNavigate()
-
+   
+  
 
     useEffect(() => {
         const fetchDetails = async () => {
@@ -22,22 +24,32 @@ export const CountryDetails = () => {
 
     if (!countryData) {
         return(
-            <p className='text-3xl font-semibold flex items-center justify-center p-4 m-20'>Page is loading...... please wait</p>
+            <p className='text-3xl font-semibold flex items-center justify-center p-4 m-20'> Loading...</p>
         )
     }
-
     const {
-        flags,
-        name,
-        population,
-        region,
-        subregion,
-        capital,
-        tld,
-        currencies,
-        languages,
+      flags,
+      name,
+      population,
+      region,
+      subregion,
+      capital,
+      tld,
+      currencies,
+      languages,
     } = countryData;
-
+    
+    const handleClick = () =>{
+      if(handleClick()){
+        const fetchDetailsByClick = async () => {
+          const response = await fetch(`https://restcountries.com/v3.1/name/${encodeURIComponent(id)}`)
+          const details = await response.json();
+          setCountryData(details[0]);
+          console.log(details[0]); // shows country details in console
+      }
+      }
+      navigate(`/details/${name}`);
+    }
     console.log(id);
 
   return (
@@ -110,14 +122,16 @@ export const CountryDetails = () => {
 
                 <div className='flex gap-4 items-center my-12'>
                     <h1 className='text-xl font-semibold'>Border Countries : </h1>
-                    <div className='flex items-center gap-4'>
+                    <div
+                    onClick={handleClick}
+                    className='flex items-center gap-4'>
                         {countryData?.borders?.length > 0 ? countryData.borders.map((border, index) => (
-                            <p key={index} className='py-2 px-4 shadow-lg'>{border}</p>
+                            <p key={index}
+                            
+                            className='py-2 px-4 shadow-lg cursor-pointer'>{border}</p>
                         ))
                         : "None"
                         }
-                        
-                        <p className='py-2 px-4 shadow-lg'>Pakistan</p>
                     </div>
                 </div>
             </div>
