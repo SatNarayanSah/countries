@@ -2,12 +2,11 @@ import React, { useEffect, useState } from "react";
 import Card from "./Card";
 import { CiSearch } from "react-icons/ci";
 import FilterByRegion from "./FilterByRegion";
-import { Link } from "react-router-dom";
 
 const Home = () => {
-  const [searchTerm, setSearchTerm] = useState(""); // State to hold the search term
+  const [searchTerm, setSearchTerm] = useState("");
   const [countriesDetails, setCountriesDetails] = useState([]);
-  const [errorMessage, setErrorMessage] = useState(""); // State to handle errors
+  const [errorMessage, setErrorMessage] = useState("");
 
   const getCountriesDetails = async (endpoint) => {
     try {
@@ -17,31 +16,27 @@ const Home = () => {
       }
       const jsonData = await data.json();
       setCountriesDetails(jsonData);
-      setErrorMessage(""); // Clear any error message
+      setErrorMessage("");
     } catch (error) {
       console.error("Error fetching countries data:", error);
-      setCountriesDetails([]); // Clear previous data
-      setErrorMessage(error.message); // Set error message
+      setCountriesDetails([]);
+      setErrorMessage(error.message);
     }
   };
 
   const handleSearch = (event) => {
-    event.preventDefault(); // Prevent form reload
+    event.preventDefault();
     if (searchTerm.trim()) {
       getCountriesDetails(`https://restcountries.com/v3.1/name/${searchTerm}`);
     }
   };
-  if (searchTerm === "") {
-    getCountriesDetails("https://restcountries.com/v3.1/all");
-  }
 
   const handleRegionSelect = (region) => {
-    // Fetch countries by region
     getCountriesDetails(`https://restcountries.com/v3.1/region/${region}`);
   };
 
   useEffect(() => {
-    getCountriesDetails("https://restcountries.com/v3.1/all"); // Fetch all countries by default
+    getCountriesDetails("https://restcountries.com/v3.1/all");
   }, []);
 
   return (
@@ -57,13 +52,13 @@ const Home = () => {
             type="text"
             placeholder="Search for a country..."
             value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)} // Update search term
+            onChange={(e) => setSearchTerm(e.target.value)}
             className="w-full outline-none"
           />
         </form>
 
         {/* Filter By Region */}
-        <FilterByRegion onclick={handleRegionSelect} />
+        <FilterByRegion onRegionSelect={handleRegionSelect} />
       </div>
 
       {/* Display Data or Errors */}
@@ -71,8 +66,8 @@ const Home = () => {
         <p className="text-red-500 text-xl">{errorMessage}</p>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
-          {countriesDetails.map((data) => (
-            <Card propData={data} key={data.id} />
+          {countriesDetails.map((data, index) => (
+            <Card propData={data} key={index} />
           ))}
         </div>
       )}

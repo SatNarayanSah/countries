@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const regions = ["Africa", "America", "Asia", "Europe", "Oceania"];
 
@@ -7,20 +7,34 @@ const FilterByRegion = ({ onRegionSelect }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const handleDropdownToggle = () => {
-    setIsDropdownOpen(!isDropdownOpen);
+    setIsDropdownOpen((prev) => !prev);
   };
 
   const handleRegionSelect = (region) => {
     setSelectedRegion(region);
     setIsDropdownOpen(false);
-    onRegionSelect(region); // Trigger the region change in the parent component
+    onRegionSelect(region); // Notify parent about selection
   };
 
+  // Close dropdown if clicked outside
+  useEffect(() => {
+    const closeDropdown = (e) => {
+      if (!e.target.closest(".dropdown-container")) {
+        setIsDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener("click", closeDropdown);
+    return () => document.removeEventListener("click", closeDropdown);
+  }, []);
+
   return (
-    <div className="relative w-64">
+    <div className="relative w-64 dropdown-container">
       {/* Dropdown Button */}
       <button
         onClick={handleDropdownToggle}
+        aria-expanded={isDropdownOpen}
+        aria-haspopup="listbox"
         className="w-full bg-white border border-gray-300 text-gray-700 py-2 px-4 rounded-md shadow-sm flex justify-between items-center"
       >
         <span>{selectedRegion || "Filter by Region"}</span>
@@ -44,17 +58,24 @@ const FilterByRegion = ({ onRegionSelect }) => {
 
       {/* Dropdown Menu */}
       {isDropdownOpen && (
-        <div className="absolute mt-2 w-full bg-white border border-gray-300 rounded-md shadow-lg z-10">
+        <ul
+          role="listbox"
+          className="absolute mt-2 w-full bg-white border border-gray-300 rounded-md shadow-lg z-50"
+        >
           {regions.map((region) => (
-            <button
+            <li
               key={region}
+              role="option"
+              aria-selected={region === selectedRegion}
               onClick={() => handleRegionSelect(region)}
-              className="block w-full text-left px-4 py-2 hover:bg-gray-100"
+              className={`block w-full text-left px-4 py-2 cursor-pointer hover:bg-gray-100 ${
+                region === selectedRegion ? "font-bold" : ""
+              }`}
             >
               {region}
-            </button>
+            </li>
           ))}
-        </div>
+        </ul>
       )}
     </div>
   );
