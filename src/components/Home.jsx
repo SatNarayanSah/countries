@@ -40,12 +40,12 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="p-16 dark:bg-gray-900 min-h-screen">
-      <div className="flex flex-wrap justify-between items-center">
+    <div className="p-4 md:p-16 dark:bg-gray-900 min-h-screen">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
         {/* Search Input */}
         <form
           onSubmit={handleSearch}
-          className="flex items-center gap-5 shadow-xl p-5 mb-10 rounded-3xl text-xl w-2/5 bg-white dark:bg-gray-800 dark:text-white"
+          className="flex items-center gap-5 shadow-xl p-4 rounded-xl text-base md:text-xl w-full sm:w-2/5 bg-white dark:bg-gray-800 dark:text-white"
         >
           <CiSearch />
           <input
@@ -63,9 +63,9 @@ const Home = () => {
 
       {/* Display Data or Errors */}
       {errorMessage ? (
-        <p className="text-red-500 text-xl">{errorMessage}</p>
+        <p className="text-red-500 text-xl mt-4">{errorMessage}</p>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-8">
           {countriesDetails.map((data, index) => (
             <Card propData={data} key={index} />
           ))}

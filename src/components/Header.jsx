@@ -11,9 +11,9 @@ const Header = () => {
   }
 
   return (
-    <div className='bg-white dark:bg-gray-800 dark:text-white flex justify-between px-12 shadow-xl h-20 items-center font-bold text-4xl'>
+    <div className='bg-white dark:bg-gray-800 dark:text-white flex justify-between px-4 md:px-12 shadow-xl h-16 md:h-20 items-center'>
       <Link to="/">
-        <div>
+        <div className="text-xl md:text-4xl font-bold">
           Where in the world
         </div>
       </Link>
@@ -21,8 +21,8 @@ const Header = () => {
         onClick={toggleDarkMode}
         className="flex items-center gap-2"
       >
-        {darkMode ? <FaSun /> : <FaMoon />}
-        <span className="text-lg">
+        {darkMode ? <FaSun className="text-lg md:text-xl" /> : <FaMoon className="text-lg md:text-xl" />}
+        <span className="text-sm md:text-lg">
           {darkMode ? 'Light Mode' : 'Dark Mode'}
         </span>
       </button>

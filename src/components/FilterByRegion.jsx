@@ -29,13 +29,13 @@ const FilterByRegion = ({ onRegionSelect }) => {
   }, []);
 
   return (
-    <div className="relative w-64 dropdown-container">
+    <div className="relative w-full sm:w-64 dropdown-container mt-4 sm:mt-0">
       {/* Dropdown Button */}
       <button
         onClick={handleDropdownToggle}
         aria-expanded={isDropdownOpen}
         aria-haspopup="listbox"
-        className="w-full bg-white dark:bg-gray-800 dark:text-white border border-gray-300 text-gray-700 py-2 px-4 rounded-md shadow-sm flex justify-between items-center"
+        className="w-full bg-white dark:bg-gray-800 dark:text-white border border-gray-300 text-gray-700 py-2 px-4 rounded-md shadow-sm flex justify-between items-center text-sm md:text-base"
       >
         <span>{selectedRegion || "Filter by Region"}</span>
         <svg
@@ -68,7 +68,7 @@ const FilterByRegion = ({ onRegionSelect }) => {
               role="option"
               aria-selected={region === selectedRegion}
               onClick={() => handleRegionSelect(region)}
-              className={`block w-full text-left px-4 py-2 cursor-pointer hover:bg-gray-100 ${
+              className={`block w-full text-left px-4 py-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 text-sm md:text-base ${
                 region === selectedRegion ? "font-bold" : ""
               }`}
             >
