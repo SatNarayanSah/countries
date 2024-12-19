@@ -22,7 +22,7 @@ const Card = (props) => {
     <div className="flex flex-wrap gap-10">
       <div
       onClick={handleclick}
-      className="shadow rounded-md w-80">
+      className="shadow rounded-md w-80 bg-white dark:bg-gray-800 dark:text-white">
         <div>
           <img
             src={flagImage}

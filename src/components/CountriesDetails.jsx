@@ -53,10 +53,10 @@ export const CountryDetails = () => {
     console.log(id);
 
   return (
-    <div>
+    <div className="dark:bg-gray-900 min-h-screen">
         <div 
             onClick={() => navigate(-1)}
-            className='flex items-center gap-2 py-4 px-10 shadow-lg text-2xl w-fit rounded-xl my-14  mx-20 cursor-pointer'
+            className='flex items-center gap-2 py-4 px-10 shadow-lg text-2xl w-fit rounded-xl my-14 mx-20 cursor-pointer dark:bg-gray-800 dark:text-white'
         >
             <FaArrowLeftLong />
             <p>Back</p>
@@ -69,7 +69,7 @@ export const CountryDetails = () => {
                 alt="Error" 
             />
 
-            <div className='flex flex-col gap-4'>
+            <div className='flex flex-col gap-4 dark:text-white'>
                 <h1 className='text-3xl font-bold capitalize'>{name?.common}</h1>
                 <div className='flex gap-12'>
                    <div className='flex flex-col gap-2'>
@@ -121,14 +121,14 @@ export const CountryDetails = () => {
                 </div>
 
                 <div className='flex gap-4 items-center my-12'>
-                    <h1 className='text-xl font-semibold'>Border Countries : </h1>
+                    <h1 className='text-xl font-semibold dark:text-white'>Border Countries : </h1>
                     <div
                     onClick={handleClick}
                     className='flex items-center gap-4'>
                         {countryData?.borders?.length > 0 ? countryData.borders.map((border, index) => (
                             <p key={index}
                             
-                            className='py-2 px-4 shadow-lg cursor-pointer'>{border}</p>
+                            className='py-2 px-4 shadow-lg cursor-pointer dark:bg-gray-800 dark:text-white'>{border}</p>
                         ))
                         : "None"
                         }

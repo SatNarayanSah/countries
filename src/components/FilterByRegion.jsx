@@ -35,7 +35,7 @@ const FilterByRegion = ({ onRegionSelect }) => {
         onClick={handleDropdownToggle}
         aria-expanded={isDropdownOpen}
         aria-haspopup="listbox"
-        className="w-full bg-white border border-gray-300 text-gray-700 py-2 px-4 rounded-md shadow-sm flex justify-between items-center"
+        className="w-full bg-white dark:bg-gray-800 dark:text-white border border-gray-300 text-gray-700 py-2 px-4 rounded-md shadow-sm flex justify-between items-center"
       >
         <span>{selectedRegion || "Filter by Region"}</span>
         <svg
@@ -60,7 +60,7 @@ const FilterByRegion = ({ onRegionSelect }) => {
       {isDropdownOpen && (
         <ul
           role="listbox"
-          className="absolute mt-2 w-full bg-white border border-gray-300 rounded-md shadow-lg z-50"
+          className="absolute mt-2 w-full bg-white dark:bg-gray-800 dark:text-white border border-gray-300 rounded-md shadow-lg z-50"
         >
           {regions.map((region) => (
             <li

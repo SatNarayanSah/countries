@@ -40,12 +40,12 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="p-16">
+    <div className="p-16 dark:bg-gray-900 min-h-screen">
       <div className="flex flex-wrap justify-between items-center">
         {/* Search Input */}
         <form
           onSubmit={handleSearch}
-          className="flex items-center gap-5 shadow-xl p-5 mb-10 rounded-3xl text-xl w-2/5"
+          className="flex items-center gap-5 shadow-xl p-5 mb-10 rounded-3xl text-xl w-2/5 bg-white dark:bg-gray-800 dark:text-white"
         >
           <CiSearch />
           <input
@@ -53,7 +53,7 @@ const Home = () => {
             placeholder="Search for a country..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full outline-none"
+            className="w-full outline-none bg-transparent dark:text-white"
           />
         </form>
 
